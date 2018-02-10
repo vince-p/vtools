@@ -1,0 +1,11 @@
+Package: vtools
+Type: Package
+Title: Vtools
+Version: 0.1.0
+Author: Vince Polito
+Maintainer: vince.polito@mq.edu.au
+Description: Useful tools for me.
+    better t-test, rounding functions
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
