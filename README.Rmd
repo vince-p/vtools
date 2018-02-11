@@ -1,0 +1,28 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# vtools
+
+a simple collection of R functions
+
+## Example
+
+Helps with rounding.
+Better t-test
+
+```{r example}
+## basic example code
+```
