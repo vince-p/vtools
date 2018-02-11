@@ -18,6 +18,7 @@ v.test<-function(x,y,paired=FALSE){
 }
 
 #' Quick rounding
+#' Updated 11/2/18
 #'
 #' @param x vector to be rounded.
 #' @param dp Number of decimal places (defaults to 2).

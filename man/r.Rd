@@ -2,7 +2,8 @@
 % Please edit documentation in R/helper.R
 \name{r}
 \alias{r}
-\title{Quick rounding}
+\title{Quick rounding
+Updated 11/2/18}
 \usage{
 r(x, dp = 2)
 }
@@ -16,6 +17,7 @@ Rounded output
 }
 \description{
 Quick rounding
+Updated 11/2/18
 }
 \examples{
 r(4.66544645454)
