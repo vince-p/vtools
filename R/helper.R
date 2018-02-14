@@ -6,6 +6,7 @@
 # 14/2/18 v0.02
 # Set round_df to default to 2dp
 # Edit v.test so that y defaults to NULL
+# Added correction adjustments to pv
 #
 # run devtools::document() to build
 #############
@@ -60,7 +61,8 @@ round_df <- function(x, digits=2) {
 #' @examples
 #' pv(dataobject$p.value)
 #' @export
-pv<-function(x){
+pv<-function(x,correction="none"){
+  x<-p.adjust(x, correction)
   if (x < 0.0005) { # adapted from http://my.ilstu.edu/~wjschne/444/IndependentSamples.html#(18). Annoying to have to do this!
     x <- "< 0.001"
   } else {
