@@ -5,6 +5,7 @@
 #
 # 14/2/18 v0.02
 # Set round_df to default to 2dp
+# Edit v.test so that y defaults to NULL
 #
 # run devtools::document() to build
 #############
@@ -19,7 +20,7 @@
 #' @examples
 #' v.test(somevar, someothervar)
 #' @export
-v.test<-function(x,y,paired=FALSE){
+v.test<-function(x,y=NULL,paired=FALSE){
   t<-t.test(x,y,paired=paired)
   return(paste0("t = ",r(t$statistic),", p = ",pv(t$p.value),", 95% CI = [",r(t$conf.int[1]),", ",r(t$conf.int[2]),"]"))
 }

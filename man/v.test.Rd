@@ -4,7 +4,7 @@
 \alias{v.test}
 \title{A better t-test}
 \usage{
-v.test(x, y, paired = FALSE)
+v.test(x, y = NULL, paired = FALSE)
 }
 \arguments{
 \item{x}{First vector to compare.}
