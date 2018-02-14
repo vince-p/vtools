@@ -4,7 +4,7 @@
 \alias{pv}
 \title{pv neatly formats the significance of a p-value}
 \usage{
-pv(x, correction = "none")
+pv(p, correction = "none", n = length(p))
 }
 \arguments{
 \item{x}{A p-value}

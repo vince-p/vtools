@@ -61,14 +61,14 @@ round_df <- function(x, digits=2) {
 #' @examples
 #' pv(dataobject$p.value)
 #' @export
-pv<-function(x,correction="none"){
-  x<-p.adjust(x, correction)
-  if (x < 0.0005) { # adapted from http://my.ilstu.edu/~wjschne/444/IndependentSamples.html#(18). Annoying to have to do this!
-    x <- "< 0.001"
+pv<-function(p,correction="none",n=length(p)){
+  p<-p.adjust(p, correction)
+  if (p < 0.0005) { # adapted from http://my.ilstu.edu/~wjschne/444/IndependentSamples.html#(18). Annoying to have to do this!
+    p <- "< 0.001"
   } else {
-    x <- as.character(paste0(x %>% formatC(digits = 3, format = "f")))
+    p <- as.character(paste0(p %>% formatC(digits = 3, format = "f")))
   }
-  return(x)
+  return(p)
 }
 
 #' SimpleCap capitalises all first letters in a string
