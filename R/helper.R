@@ -1,5 +1,12 @@
 # VP Helper Functions
-# 10/2/18
+#
+# 10/2/18 v0.01
+# initial package
+#
+# 14/2/18 v0.02
+# Set round_df to default to 2dp
+#
+# run devtools::document() to build
 #############
 # HELPER FUNCTIONS
 
@@ -39,7 +46,7 @@ r<-function(x, dp=2){ #easy rounding
 #' @examples
 #' tocome
 #' @export
-round_df <- function(x, digits) {
+round_df <- function(x, digits=2) {
   numeric_columns <- sapply(x, class) == 'numeric'
   x[numeric_columns] <-  round(x[numeric_columns], digits)
   print(x)

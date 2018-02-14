@@ -4,7 +4,7 @@
 \alias{round_df}
 \title{round_df function from http://jeromyanglim.tumblr.com/post/50228877196/round-numbers-in-data-frame-that-contains-non}
 \usage{
-round_df(x, digits)
+round_df(x, digits = 2)
 }
 \arguments{
 \item{x}{a dataframe.}
