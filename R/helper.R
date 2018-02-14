@@ -62,7 +62,7 @@ round_df <- function(x, digits=2) {
 #' pv(dataobject$p.value)
 #' @export
 pv<-function(p,correction="none",n=length(p)){
-  p<-p.adjust(p, correction)
+  p<-p.adjust(p, correction,n)
   if (p < 0.0005) { # adapted from http://my.ilstu.edu/~wjschne/444/IndependentSamples.html#(18). Annoying to have to do this!
     p <- "< 0.001"
   } else {
