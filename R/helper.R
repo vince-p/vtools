@@ -1,5 +1,7 @@
 # VP Helper Functions
 #
+# 23/5/18
+# Added anon.csv function for removing identifying information from Qualtrics csv files
 # 10/2/18 v0.01
 # initial package
 #
@@ -7,6 +9,9 @@
 # Set round_df to default to 2dp
 # Edit v.test so that y defaults to NULL
 # Added correction adjustments to pv
+#
+# 4/5/18
+# Add WTF function
 #
 # run devtools::document() to build
 #############
@@ -26,6 +31,7 @@ v.test<-function(x,y=NULL,paired=FALSE){
   return(paste0("t = ",r(t$statistic),", p = ",pv(t$p.value),", 95% CI = [",r(t$conf.int[1]),", ",r(t$conf.int[2]),"]"))
 }
 
+
 #' Quick rounding
 #' Updated 11/2/18
 #'
@@ -40,6 +46,7 @@ r<-function(x, dp=2){ #easy rounding
   as.numeric(format(round(x,dp),nsmall=dp))
 }
 
+
 #' round_df function from http://jeromyanglim.tumblr.com/post/50228877196/round-numbers-in-data-frame-that-contains-non
 #'
 #' @param x a dataframe.
@@ -53,6 +60,7 @@ round_df <- function(x, digits=2) {
   x[numeric_columns] <-  round(x[numeric_columns], digits)
   print(x)
 }
+
 
 #' pv neatly formats the significance of a p-value
 #'
@@ -71,6 +79,7 @@ pv<-function(p,correction="none",n=length(p)){
   return(p)
 }
 
+
 #' SimpleCap capitalises all first letters in a string
 #'
 #' @param x A string
@@ -84,6 +93,7 @@ simpleCap <- function(x) { #capitalise all first letters
         sep="", collapse=" ")
 }
 
+
 #' vmode shows the most common value in a vector
 #'
 #' @param x A vector
@@ -95,6 +105,7 @@ vmode <- function(x) {
   ux <- unique(x)
   ux[which.max(tabulate(match(x, ux)))]
 }
+
 
 #' wtf is stolen from the internet somewhere. Uses excel to view objects
 #'
@@ -133,4 +144,20 @@ wtf <- function (x) {
   } else {
     shell.exec(preferredFilePath)
   }
+}
+
+
+#' anon.csv opens a qualtrics csv and removes identifying data
+#'
+#' @param f A CSV file
+#' @param cols Column names to additionally exclude
+#' @return an anonymous .CSV file
+#' @examples
+#' tocome
+#' @export
+anon.csv <- function (f, cols) {
+  excludecols <- c("IPAddress", "LocationLatitude", "LocationLongitude")
+  t<-read.csv("data/hypnosis_20180523.csv")
+  t <- t[, !names(t) %in% c(excludecols,cols)]
+  write.csv(t,file.path(dirname(f),paste0("anon_",basename(f))))
 }
