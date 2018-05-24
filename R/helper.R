@@ -1,5 +1,8 @@
 # VP Helper Functions
 #
+# 24/5/18
+# Removed anon.csv  This is better suited to specific scripts
+#
 # 23/5/18
 # Added anon.csv function for removing identifying information from Qualtrics csv files
 # 10/2/18 v0.01
@@ -144,20 +147,4 @@ wtf <- function (x) {
   } else {
     shell.exec(preferredFilePath)
   }
-}
-
-
-#' anon.csv opens a qualtrics csv and removes identifying data
-#'
-#' @param f A CSV file
-#' @param cols Column names to additionally exclude
-#' @return an anonymous .CSV file
-#' @examples
-#' tocome
-#' @export
-anon.csv <- function (f, cols) {
-  excludecols <- c("IPAddress", "LocationLatitude", "LocationLongitude")
-  t<-read.csv("data/hypnosis_20180523.csv")
-  t <- t[, !names(t) %in% c(excludecols,cols)]
-  write.csv(t,file.path(dirname(f),paste0("anon_",basename(f))))
 }
