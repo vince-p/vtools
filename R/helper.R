@@ -1,5 +1,8 @@
 # VP Helper Functions
 #
+# 26/6/18
+# Added fq function
+#
 # 24/5/18
 # Removed anon.csv  This is better suited to specific scripts
 #
@@ -147,4 +150,19 @@ wtf <- function (x) {
   } else {
     shell.exec(preferredFilePath)
   }
+}
+
+
+#' fq displays counts and percentages of each value in a vector
+#'
+#' @param x A vector
+#' @return dataframe with counts and percentages
+#' @examples
+#' tocome
+#' @export
+fq <- function(x,dp=1) {
+  a <- table(x)
+  b <- r(table(x)/sum(table(x))*100,dp)
+  c <- rbind(count=a,"%"=b)
+  c
 }
