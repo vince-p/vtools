@@ -1,24 +1,5 @@
 # VP Helper Functions
 #
-# 26/6/18
-# Added fq function
-#
-# 24/5/18
-# Removed anon.csv  This is better suited to specific scripts
-#
-# 23/5/18
-# Added anon.csv function for removing identifying information from Qualtrics csv files
-# 10/2/18 v0.01
-# initial package
-#
-# 14/2/18 v0.02
-# Set round_df to default to 2dp
-# Edit v.test so that y defaults to NULL
-# Added correction adjustments to pv
-#
-# 4/5/18
-# Add WTF function
-#
 # run devtools::document() to build
 #############
 # HELPER FUNCTIONS
@@ -75,14 +56,9 @@ round_df <- function(x, digits=2) {
 #' @examples
 #' pv(dataobject$p.value)
 #' @export
-pv<-function(p,correction="none",n=length(p)){
-  p<-p.adjust(p, correction,n)
-  if (p < 0.0005) { # adapted from http://my.ilstu.edu/~wjschne/444/IndependentSamples.html#(18). Annoying to have to do this!
-    p <- "< 0.001"
-  } else {
-    p <- as.character(paste0(p %>% formatC(digits = 3, format = "f")))
-  }
-  return(p)
+pv<- function (p, method = "none", n = length(p)) {
+  p <- p.adjust(p, method, n)
+  ifelse (p < 5e-04, "< 0.001", as.character(paste0(p %>% formatC(digits = 3, format = "f"))))
 }
 
 
