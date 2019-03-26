@@ -142,3 +142,20 @@ fq <- function(x,dp=1) {
   c <- rbind(count=a,"%"=b)
   c
 }
+
+#' ecor displays a neatly formatted correlation table for a dataframe
+#'
+#' @param data A dataframe
+#' @param digits Number of digits to report (default =3)
+#' @param method correlation method, any of c("pearson", "kendall", "spearman"
+#' @return dataframe with correlations
+#' @examples
+#' ecor(df,2,"spearman")
+#' @export
+
+ecor<-function(data,digits=3,method="pearson"){
+  x<-cor(data, method=method)
+  x[upper.tri(x)] <- NA # erase the upper triangle
+  diag(x) <- NA # erase the diagonal 0's
+  round_df(x,digits)
+}
