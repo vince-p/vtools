@@ -20,7 +20,6 @@ v.test<-function(x,y=NULL,paired=FALSE){
 
 
 #' Quick rounding
-#' Updated 11/2/18
 #'
 #' @param x vector to be rounded.
 #' @param dp Number of decimal places (defaults to 2).
@@ -34,6 +33,8 @@ r<-function(x, dp=2){ #easy rounding
 }
 
 
+#' Rounds values in a dataframe
+#'
 #' round_df function from http://jeromyanglim.tumblr.com/post/50228877196/round-numbers-in-data-frame-that-contains-non
 #'
 #' @param x a dataframe.
@@ -76,7 +77,7 @@ simpleCap <- function(x) { #capitalise all first letters
 }
 
 
-#' vmode shows the most common value in a vector
+#' Shows the most common value in a vector
 #'
 #' @param x A vector
 #' @return mode value within the vector
@@ -131,7 +132,9 @@ wtf <- function (x) {
 }
 
 
-#' fq displays counts and percentages of each value in a vector
+#' Frequency counts and percentages
+#'
+#' Displays a tally of counts and percentages of each value in a vector
 #'
 #' @param x A vector
 #' @return dataframe with counts and percentages
@@ -145,8 +148,9 @@ fq <- function(x,dp=1) {
   c
 }
 
-#' megacor presents a correlation table with significance indicators
+#' Generate a correlation table
 #'
+#' Creates a nicely formatted correlation table with significance indicators.
 #' uses lsr:correlate and adapts a function from http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 #'
 #' @param x A matrix or dataframe containing variables to be correlated
@@ -170,13 +174,12 @@ megacor <-function(x,y=NULL,corr.method="pearson",p.adjust.method="holm", remove
   p <- as.matrix(z[[2]])
 
   ## Define notions for significance levels; spacing is important.
-  mystars <- ifelse(p < .0001, "****", ifelse(p < .001, "*** ", ifelse(p < .01, "**  ", ifelse(p < .05, "*   ", "    "))))
+  mystars <- ifelse(p < .001, "***", ifelse(p < .01, "** ", ifelse(p < .05, "*  ", "   ")))
 
   R <- as.matrix(round_df(R))
 
   ## build a new matrix that includes the correlations with their apropriate stars
   Rnew <- matrix(paste(R, mystars, sep=""), ncol=ncol(z[[1]]))
-  diag(Rnew) <- paste(diag(R), " ", sep="")
   rownames(Rnew) <- rownames(z[[1]])
   colnames(Rnew) <- colnames(z[[1]])
 
@@ -197,8 +200,6 @@ megacor <-function(x,y=NULL,corr.method="pearson",p.adjust.method="holm", remove
   }
 
   else if(removeTriangle[1]=="none"){ # I ADDED THIS TO KEEP THE WHOLE TABLE
-    Rnew <- as.matrix(Rnew)
-    #Rnew[upper.tri(Rnew, diag = TRUE)] <- ""
     Rnew <- as.data.frame(Rnew)
   }
 
