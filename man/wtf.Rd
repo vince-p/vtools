@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{wtf}
 \alias{wtf}
-\title{wtf is stolen from the internet somewhere. Uses excel to view objects}
+\title{WTF is in this dataframe}
 \usage{
 wtf(x)
 }
@@ -13,7 +13,7 @@ wtf(x)
 opens in excel
 }
 \description{
-wtf is stolen from the internet somewhere. Uses excel to view objects
+Uses excel to view R objects. Stolen from the internet somewhere.
 }
 \examples{
 tocome
