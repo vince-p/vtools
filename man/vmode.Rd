@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{vmode}
 \alias{vmode}
-\title{vmode shows the most common value in a vector}
+\title{Shows the most common value in a vector}
 \usage{
 vmode(x)
 }
@@ -13,7 +13,7 @@ vmode(x)
 mode value within the vector
 }
 \description{
-vmode shows the most common value in a vector
+Shows the most common value in a vector
 }
 \examples{
 tocome

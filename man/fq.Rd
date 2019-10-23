@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{fq}
 \alias{fq}
-\title{fq displays counts and percentages of each value in a vector}
+\title{Frequency counts and percentages}
 \usage{
 fq(x, dp = 1)
 }
@@ -13,7 +13,7 @@ fq(x, dp = 1)
 dataframe with counts and percentages
 }
 \description{
-fq displays counts and percentages of each value in a vector
+Displays a tally of counts and percentages of each value in a vector
 }
 \examples{
 tocome

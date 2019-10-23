@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{megacor}
 \alias{megacor}
-\title{megacor presents a correlation table with significance indicators}
+\title{Generate a correlation table}
 \usage{
 megacor(x, y = NULL, corr.method = "pearson",
   p.adjust.method = "holm", removeTriangle = c("none", "upper",
@@ -23,6 +23,7 @@ megacor(x, y = NULL, corr.method = "pearson",
 dataframe with correlations
 }
 \description{
+Creates a nicely formatted correlation table with significance indicators.
 uses lsr:correlate and adapts a function from http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 }
 \examples{

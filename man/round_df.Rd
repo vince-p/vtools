@@ -2,7 +2,7 @@
 % Please edit documentation in R/helper.R
 \name{round_df}
 \alias{round_df}
-\title{round_df function from http://jeromyanglim.tumblr.com/post/50228877196/round-numbers-in-data-frame-that-contains-non}
+\title{Rounds values in a dataframe}
 \usage{
 round_df(x, digits = 2)
 }
