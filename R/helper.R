@@ -89,7 +89,9 @@ vmode <- function(x) {
 }
 
 
-#' wtf is stolen from the internet somewhere. Uses excel to view objects
+#' WTF is in this dataframe
+#'
+#' Uses excel to view R objects. Stolen from the internet somewhere.
 #'
 #' @param x A dataframe (or similar?)
 #' @return opens in excel
@@ -144,6 +146,7 @@ fq <- function(x,dp=1) {
 }
 
 #' megacor presents a correlation table with significance indicators
+#'
 #' uses lsr:correlate and adapts a function from http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 #'
 #' @param x A matrix or dataframe containing variables to be correlated
@@ -199,7 +202,7 @@ megacor <-function(x,y=NULL,corr.method="pearson",p.adjust.method="holm", remove
     Rnew <- as.data.frame(Rnew)
   }
 
-  if (result[1]=="none") print(Rnew)
+  if (result[1]=="none") return(Rnew)
   else{
     if(result[1]=="html") print(xtable(Rnew), type="html")
     else print(xtable(Rnew), type="latex")
