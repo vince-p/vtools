@@ -143,19 +143,65 @@ fq <- function(x,dp=1) {
   c
 }
 
-#' ecor displays a neatly formatted correlation table for a dataframe
+#' megacor presents a correlation table with significance indicators
+#' uses lsr:correlate and adapts a function from http://www.sthda.com/english/wiki/elegant-correlation-table-using-xtable-r-package
 #'
-#' @param data A dataframe
-#' @param digits Number of digits to report (default =3)
-#' @param method correlation method, any of c("pearson", "kendall", "spearman"
+#' @param x A matrix or dataframe containing variables to be correlated
+#' @param y Optionally, a second set of variables to be correlated with those in x
+#' @param corr.method What kind of correlations should be computed? Default is "pearson", but "spearman" and "kendall" are also supported
+#' @param removeTriangle Specifies the formatting of the output. Which section of the table to remove c("none", "upper", "lower")
+#' @param result Format for output c("none", "html", "latex")
 #' @return dataframe with correlations
 #' @examples
-#' ecor(df,2,"spearman")
+#' megacor(df)
+#' megacor(df[1:4],df[5:8],corr.method = "spearman", removeTriangle = "upper", result = "html")
+#' @importFrom xtable xtable
+#' @importFrom lsr correlate
 #' @export
+megacor <-function(x,y=NULL,corr.method="pearson",p.adjust.method="holm", removeTriangle=c("none","upper", "lower"),
+                   result=c("none", "html", "latex")){
 
-ecor<-function(data,digits=3,method="pearson"){
-  x<-cor(data, method=method)
-  x[upper.tri(x)] <- NA # erase the upper triangle
-  diag(x) <- NA # erase the diagonal 0's
-  round_df(x,digits)
+  z <- lsr::correlate(x,y,test=TRUE,corr.method=corr.method,p.adjust.method=p.adjust.method)
+
+  R <- as.matrix(z[[1]])
+  p <- as.matrix(z[[2]])
+
+  ## Define notions for significance levels; spacing is important.
+  mystars <- ifelse(p < .0001, "****", ifelse(p < .001, "*** ", ifelse(p < .01, "**  ", ifelse(p < .05, "*   ", "    "))))
+
+  R <- as.matrix(round_df(R))
+
+  ## build a new matrix that includes the correlations with their apropriate stars
+  Rnew <- matrix(paste(R, mystars, sep=""), ncol=ncol(z[[1]]))
+  diag(Rnew) <- paste(diag(R), " ", sep="")
+  rownames(Rnew) <- rownames(z[[1]])
+  colnames(Rnew) <- colnames(z[[1]])
+
+  ## remove upper triangle of correlation matrix
+  if(removeTriangle[1]=="upper"){
+    Rnew <- as.matrix(Rnew)
+    Rnew[upper.tri(Rnew, diag = TRUE)] <- ""
+    Rnew <- as.data.frame(Rnew)
+    Rnew <- Rnew[-1,1:length(Rnew)-1]
+  }
+
+  ## remove lower triangle of correlation matrix
+  if(removeTriangle[1]=="lower"){
+    Rnew <- as.matrix(Rnew)
+    Rnew[lower.tri(Rnew, diag = TRUE)] <- ""
+    Rnew <- as.data.frame(Rnew)
+    Rnew <- Rnew[1:length(Rnew)-1,-1]
+  }
+
+  else if(removeTriangle[1]=="none"){ # I ADDED THIS TO KEEP THE WHOLE TABLE
+    Rnew <- as.matrix(Rnew)
+    #Rnew[upper.tri(Rnew, diag = TRUE)] <- ""
+    Rnew <- as.data.frame(Rnew)
+  }
+
+  if (result[1]=="none") print(Rnew)
+  else{
+    if(result[1]=="html") print(xtable(Rnew), type="html")
+    else print(xtable(Rnew), type="latex")
+  }
 }
