@@ -4,9 +4,14 @@
 \alias{megacor}
 \title{Generate a correlation table}
 \usage{
-megacor(x, y = NULL, corr.method = "pearson",
-  p.adjust.method = "holm", removeTriangle = c("none", "upper",
-  "lower"), result = c("none", "html", "latex"))
+megacor(
+  x,
+  y = NULL,
+  corr.method = "pearson",
+  p.adjust.method = "holm",
+  removeTriangle = c("none", "upper", "lower"),
+  result = c("none", "html", "latex")
+)
 }
 \arguments{
 \item{x}{A matrix or dataframe containing variables to be correlated}

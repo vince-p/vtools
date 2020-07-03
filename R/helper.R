@@ -29,7 +29,7 @@ v.test<-function(x,y=NULL,paired=FALSE){
 #' r(somevector, 3)
 #' @export
 r<-function(x, dp=2){ #easy rounding
-  as.numeric(format(round(x,dp),nsmall=dp))
+  format(round(as.numeric(x),dp),nsmall=dp)
 }
 
 
