@@ -62,6 +62,21 @@ pv<- function (p, method = "none", n = length(p)) {
   ifelse (p < 5e-04, "< 0.001", as.character(paste0(p %>% formatC(digits = 3, format = "f"))))
 }
 
+#' pv2 neatly formats the significance of a p-value with equals sign
+#'
+#' @param x A p-value
+#' @return Neatly formatted p-output
+#' @examples
+#' pv2(dataobject$p.value)
+#' @export
+pv2<- function (p, method = "none", n = length(p)) {
+  p <- p.adjust(p, method, n)
+  ifelse (p < 5e-04, "< 0.001", as.character(paste0("= ", p %>% formatC(digits = 3, format = "f"))))
+}
+
+
+
+
 
 #' SimpleCap capitalises all first letters in a string
 #'

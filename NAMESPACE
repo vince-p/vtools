@@ -3,6 +3,7 @@
 export(fq)
 export(megacor)
 export(pv)
+export(pv2)
 export(r)
 export(round_df)
 export(simpleCap)
