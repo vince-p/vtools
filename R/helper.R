@@ -224,3 +224,18 @@ megacor <-function(x,y=NULL,corr.method="pearson",p.adjust.method="holm", remove
     else print(xtable(Rnew), type="latex")
   }
 }
+
+#' Select based on multiple matches (multiple contains)
+#'
+#' Select a subset of columns based on multiple search strings
+#'
+#' @param data A dataframe
+#' @param matchvector A vector of search terms
+#' @return dataframe with selected cols
+#' @examples
+#' tocome
+#' @export
+vselect <- function(data,matchvector){
+  matchExpression <- paste(matchvector, collapse = "|")
+  select(data,matches(matchExpression))
+}
