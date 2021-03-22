@@ -183,7 +183,7 @@ fq <- function(x,dp=1) {
 megacor <-function(x,y=NULL,corr.method="pearson",p.adjust.method="holm", removeTriangle=c("none","upper", "lower"),
                    result=c("none", "html", "latex")){
 
-  z <- lsr::correlate(x,y,test=TRUE,corr.method=corr.method,p.adjust.method=p.adjust.method)
+  z <- lsr::correlate(as.data.frame(x),as.data.frame(y),test=TRUE,corr.method=corr.method,p.adjust.method=p.adjust.method)
 
   R <- as.matrix(z[[1]])
   p <- as.matrix(z[[2]])
