@@ -239,3 +239,27 @@ vselect <- function(data,matchvector){
   matchExpression <- paste(matchvector, collapse = "|")
   select(data,matches(matchExpression))
 }
+
+
+#' Nicely formatted table
+#'
+#' Displays a table with values less than 0.001 represented as "<.001". All other numeric values displayed to 3dp.
+#'
+#' @param x A dataframe
+#' @return A nicely formatted dataframe
+#' @examples
+#' tocome
+#' @export
+nicetable <- function(table){
+  as.data.frame(lapply(table, function(x) {
+    if (is.numeric(x)) {
+      vapply(x,
+             function(y) {
+               ifelse(abs(y) < 0.001, "<.001", sprintf("%.3f", y))
+             },
+             character(1))
+    } else {
+      x
+    }
+  }))
+}

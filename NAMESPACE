@@ -2,6 +2,7 @@
 
 export(fq)
 export(megacor)
+export(nicetable)
 export(pv)
 export(pv2)
 export(r)
